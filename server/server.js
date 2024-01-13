@@ -25,6 +25,41 @@ app.post('/api/register', async (req, res) => {
     }
 });
 
+// Search for recipes by ingredients
+app.post('/api/recipes/search', async (req, res) => {
+    try {
+        const { ingredients } = req.body;
+
+        const recipes = await db.Recipe.find({ 'ingredients.ingredientName': { $all: ingredients } });
+
+        if (recipes.length === 0) {
+            res.status(404).json({ message: 'No recipes found with the specified ingredients'})
+        } else {
+            res.json(recipes);
+        }
+    } catch (error) {
+        console.error('Error searching for recipes:', error.message);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+// Retrieve recipe details
+app.get('/api/recipes/:recipeName', async (req, res) => {
+    try {
+        const { recipeName } = req.params;
+        
+        const recipe = await db.Recipe.findOne({ name: recipeName });
+
+        if (!recipe) {
+            res.status(404).json({ message: 'No recipe found with the specified name'});    
+        } else {
+            res.json(recipe);
+        }
+    } catch (error) {
+        console.error('Error retrieving recipe:', error.message);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
