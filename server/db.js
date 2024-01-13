@@ -17,6 +17,17 @@ const UserSchema = new mongoose.Schema({
 
 const User = mongoose.model('User', UserSchema);
 
-module.exports = {
-    User
-};
+const RecipeSchema = new mongoose.Schema({
+    name: { type: String, required: true},
+    ingredients: [
+        {
+            ingredientName: { type: String, required: true},
+            measurement: { type: String, required: true},
+        },
+    ],
+    instructions: { type: String, required: true},
+});
+
+const Recipe = mongoose.model('Recipe', RecipeSchema);
+
+module.exports = { User, Recipe };
