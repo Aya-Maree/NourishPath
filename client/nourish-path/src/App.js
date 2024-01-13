@@ -1,11 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-
+import './App.css';
 // Import your page components
 import HomePage from './pages/homepage';
 import ChatBot from './pages/chatBot';
 import Recipes from './pages/recipes';
 import Journal from './pages/journals';
+
 
 function App() {
   return (

@@ -24,6 +24,8 @@ app.post('/api/register', async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
+
+
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
   });
