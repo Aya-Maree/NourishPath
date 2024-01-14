@@ -33,7 +33,16 @@ app.post('/api/recipes/search', async (req, res) => {
         const recipes = await db.Recipe.find({ 'ingredients.ingredientName': { $all: ingredients } });
 
         if (recipes.length === 0) {
-            res.status(404).json({ message: 'No recipes found with the specified ingredients'})
+            const firstIngredientWithResults = await db.Recipe.findOne({'ingredients.ingredientName': ingredients[0]});
+
+            if (firstIngredientWithResults) {
+                res.status(404).json({
+                    message: `We couldn't find a recipe with all your ingredients. However, we do have recipes with ${ingredients[0]}.`,
+                    suggestions: [ingredients[0]],
+                });
+            } else {
+                res.status(404).json({ message: 'No recipes found with the specified ingredients'});
+            }
         } else {
             res.json(recipes);
         }
