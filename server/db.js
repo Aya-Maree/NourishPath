@@ -36,6 +36,7 @@ const JournalEntrySchema = new mongoose.Schema({
       ref: 'User', 
       required: true 
     },
+    title: { type: String, required: true }, // Title of the journal entry
     entry: { type: String, required: true },
     createdAt: { type: Date, default: Date.now },
   });

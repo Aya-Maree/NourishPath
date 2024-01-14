@@ -134,6 +134,34 @@ app.post('/api/journals', async (req, res) => {
     }
   });
 
+  app.post('/api/journals', async (req, res) => {
+    try {
+      const { email, title, entry } = req.body;
+  
+      // Logic to find the user by email
+      const user = await db.User.findOne({ email });
+      if (!user) {
+        return res.status(404).json({ error: 'User not found' });
+      }
+  
+      // Create a new journal entry
+      const newJournal = new db.JournalEntry({
+        user: user._id, // user's ObjectId from the User collection
+        title,
+        entry
+      });
+  
+      // Save the journal entry
+      await newJournal.save();
+  
+      res.status(200).json({ message: 'Journal entry saved successfully' });
+    } catch (error) {
+      console.error('Error saving journal entry:', error.message);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  });
+  
+
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
   });

@@ -6,21 +6,24 @@ function Journal() {
         // Read the values as soon as the component mounts
         const userName = localStorage.getItem('userName');
         const userEmail = localStorage.getItem('userEmail');
+
         console.log('Journal component mount:', { userName, userEmail });
     
       }, []);
   const [entry, setEntry] = useState('');
-  const userEmail = localStorage.getItem('email'); // Retrieve email from local storage
+  const userEmail = localStorage.getItem('userEmail'); // Retrieve email from local storage
+  const [title, setTitle] = useState(''); // State for the journal title
 
   const handleSubmit = async (e) => {
-    console.log(userEmail)
     e.preventDefault();
     try {
       const response = await axios.post('http://localhost:5001/api/journals', {
         email: userEmail, // Send email along with the entry
+        title, // Include the title in the POST request
         entry,
       });
       console.log(response.data);
+      setTitle(''); // Clear the title state
       setEntry(''); // Clear the journal entry on successful save
     } catch (error) {
       if (error.response) {
@@ -41,15 +44,22 @@ function Journal() {
     <div>
       <h1>Journals</h1>
       <form onSubmit={handleSubmit}>
-        <textarea
-          value={entry}
-          onChange={(e) => setEntry(e.target.value)}
-          placeholder="Write your feelings here..."
-          rows="10"
-          cols="50"
-        />
-        <button type="submit">Save Entry</button>
-      </form>
+  <input
+    type="text"
+    value={title}
+    onChange={(e) => setTitle(e.target.value)}
+    placeholder="Title of your entry"
+  />
+  <textarea
+    value={entry}
+    onChange={(e) => setEntry(e.target.value)}
+    placeholder="Write your feelings here..."
+    rows="10"
+    cols="50"
+  />
+  <button type="submit">Save Entry</button>
+</form>
+
     </div>
   );
 }
