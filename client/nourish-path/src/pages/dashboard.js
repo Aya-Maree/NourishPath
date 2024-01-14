@@ -12,22 +12,22 @@ function DashBoard() {
 
   const cards = [
     {
-      title: "Chatbot",
-      description: "Interact with our AI chatbot for assistance.",
-      route: "/chatbot",
-      imageUrl: "/chatbot.jpg" // Replace with actual image path
-    },
+        title: "Chatbot",
+        description: "Interact with our AI chatbot for assistance.",
+        route: "/chatbot",
+        imageUrl: "../chatbot.jpg" // No need for the path if the image is in the public folder
+      },
     {
       title: "Journals",
       description: "Keep track of your thoughts and progress.",
       route: "/journaling",
-      imageUrl: "path/to/your/image2.jpg" // Replace with actual image path
+      imageUrl: "../journals.jpg" // Replace with actual image path
     },
     {
       title: "Meal Prep",
       description: "Plan and prepare your meals for the week.",
       route: "/recipes",
-      imageUrl: "path/to/your/image3.jpg" // Replace with actual image path
+      imageUrl: "../recipes.jpg" // Replace with actual image path
     }
   ];
 
@@ -59,7 +59,7 @@ function DashBoard() {
           {hoveredCard === index && (
             <CardMedia
               component="img"
-              height="140"
+              height="250"
               image={card.imageUrl}
               alt={card.title}
             />
