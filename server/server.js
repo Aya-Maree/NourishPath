@@ -116,7 +116,7 @@ app.get('/recipes/:filename', (req, res) => {
     const { filename } = req.params;
     res.sendFile(path.join(__dirname, 'public', 'recipes', filename));
   });
-
+/*
 app.post('/api/journals', async (req, res) => {
     try {
       const { email, entry } = req.body;
@@ -137,11 +137,10 @@ app.post('/api/journals', async (req, res) => {
       console.error('Error saving journal entry:', error.message);
       res.status(500).json({ error: 'Internal Server Error' });
     }
-  });
-
+  });*/
   app.post('/api/journalss', async (req, res) => {
     try {
-      const { email, title, entry } = req.body;
+      const { email, title, entry, mood } = req.body; // Include mood in the destructuring
   
       // Logic to find the user by email
       const user = await db.User.findOne({ email });
@@ -153,7 +152,8 @@ app.post('/api/journals', async (req, res) => {
       const newJournal = new db.JournalEntry({
         user: user._id, // user's ObjectId from the User collection
         title,
-        entry
+        entry,
+        mood // Save the mood
       });
   
       // Save the journal entry
@@ -165,6 +165,7 @@ app.post('/api/journals', async (req, res) => {
       res.status(500).json({ error: 'Internal Server Error' });
     }
   });
+  
 
   // Get all journal entries for a user
   app.get('/api/journals', async (req, res) => {

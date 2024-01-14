@@ -8,7 +8,6 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import DeleteIcon from '@mui/icons-material/Delete'; // Import the delete icon
 import EditIcon from '@mui/icons-material/Edit'; // Import the edit icon
 
-
 function Journal() {
   const [entries, setEntries] = useState([]);
   const [editId, setEditId] = useState(null);
@@ -16,6 +15,21 @@ function Journal() {
   const [editedEntry, setEditedEntry] = useState('');
   const [entry, setEntry] = useState('');
   const [title, setTitle] = useState('');
+  const [mood, setMood] = useState('');
+
+  const getMoodImageSrc = (mood) => {
+    switch (mood) {
+      case 'happy':
+        return '/happy.png';
+      case 'sad':
+        return '/sad.png';
+      case 'angry':
+        return '/angry.png';
+      default:
+        return ''; // default image or empty string if no mood is set
+    }
+  };
+
   const userEmail = localStorage.getItem('userEmail');
   const toggleEdit = (journal) => {
     setEditId(journal._id);
@@ -63,11 +77,13 @@ function Journal() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5001/api/journalss', {
-        email: userEmail, // Send email along with the entry
-        title, // Include the title in the POST request
-        entry,
-      });
+        const response = await axios.post('http://localhost:5001/api/journalss', {
+            email: userEmail,
+            title,
+            entry,
+            mood, // include mood in the POST request
+          });
+    
       console.log(response.data);
       setTitle(''); // Clear the title state
       setEntry(''); // Clear the journal entry on successful save
@@ -87,65 +103,100 @@ function Journal() {
     }
   };
   
+  const imageStyle = {
+    width: '50px', // Set the width you want for your images
+    height: '50px', // Set the height to be the same as the width for a circle
+    borderRadius: '50%', // This makes the image circular
+    objectFit: 'cover', // This makes sure the image covers the area without distorting aspect ratio
+    margin: '0 10px', // Adds some space between the images
+  };
   return (
-    <div>
-      <h1>Journals</h1>
+    <div id="journal-container">
+        <div id="journal-intro">
+        <h2>Why Journaling Matters</h2>
+        <p>
+          Journaling can be a therapeutic practice that helps you 
+          clarify your thoughts and feelings, understand yourself 
+          better, reduce stress, and solve problems more effectively. 
+          It's a great way to reflect on your day-to-day experiences 
+          and track personal growth over time.
+        </p>
+      </div>
+    <div id="journal-form-container">
+      <div id="journal-form">
+        <h1>Journals</h1>
         <form onSubmit={handleSubmit}>
-            <input
-                type="text"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                placeholder="Title of your entry"
-            />
-            <textarea
-                value={entry}
-                onChange={(e) => setEntry(e.target.value)}
-                placeholder="Write your feelings here..."
-                rows="10"
-                cols="50"
-            />
-            <button type="submit">Save Entry</button>
+          <input
+            id="journal-title-input"
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            placeholder="Title of your entry"
+          />
+          <textarea
+            id="journal-textarea"
+            value={entry}
+            onChange={(e) => setEntry(e.target.value)}
+            placeholder="Write your feelings here..."
+          />
+          <div id="mood-selector">
+            <img src="/angry.png" alt="Angry" style={imageStyle} onClick={() => setMood('angry')} />
+            <img src="/happy.png" alt="Happy" style={imageStyle} onClick={() => setMood('happy')} />
+            <img src="/sad.png" alt="Sad" style={imageStyle} onClick={() => setMood('sad')} />
+          </div>
+          <button id="save-entry-button" type="submit">Save Entry</button>
         </form>
+      </div>
+    </div>
+    <div id="journal-entries-container">
+        <div id="journal-entries">
         {entries.map((journal) => (
         <Accordion key={journal._id}>
           <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+            <img
+              src={getMoodImageSrc(journal.mood)}
+              alt={journal.mood}
+              style={imageStyle} // Using the imageStyle for mood images
+            />
             {editId === journal._id ? (
               <>
                 <input
                   value={editedTitle}
                   onChange={(e) => setEditedTitle(e.target.value)}
                 />
-                <button onClick={handleUpdate}>Update</button>
+                <button onClick={() => handleUpdate(journal._id)}>Update</button>
               </>
             ) : (
-              <Typography style={{ flex: 1 }}>{journal.title}</Typography>
+              <>
+                <Typography style={{ flex: 1 }}>{journal.title}</Typography>
+                <EditIcon
+                  style={{ cursor: 'pointer' }}
+                  onClick={() => toggleEdit(journal)}
+                />
+                <DeleteIcon
+                  style={{ cursor: 'pointer' }}
+                  onClick={(event) => handleDelete(journal._id, event)}
+                />
+              </>
             )}
-            <EditIcon
-              style={{ cursor: 'pointer' }}
-              onClick={() => toggleEdit(journal)}
-            />
-            <DeleteIcon
-              style={{ cursor: 'pointer' }}
-              onClick={(event) => handleDelete(journal._id, event)}
-            />
           </AccordionSummary>
           <AccordionDetails>
-            {editId === journal._id
-                ? (
-                <textarea
-                value={editedEntry}
-                onChange={(e) => setEditedEntry(e.target.value)}
-                rows="4"
-                cols="50"
-                />
-                ) : (
-                <Typography>{journal.entry}</Typography>
-                )}
-                </AccordionDetails>
-                </Accordion>
-                ))}
-                </div>
-  );
+            {editId ===
+journal._id ? (
+<textarea
+value={editedEntry}
+onChange={(e) => setEditedEntry(e.target.value)}
+rows="4"
+cols="50"
+/>
+) : (
+<Typography>{journal.entry}</Typography>
+)}
+</AccordionDetails>
+</Accordion>
+))}</div>
+</div>
+</div>
+);
 }
-
 export default Journal;

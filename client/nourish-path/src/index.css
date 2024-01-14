@@ -277,3 +277,82 @@ nav a:hover {
   border-radius: 8px;
   margin-bottom: 10px;
 }
+#journal-container {
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px;
+}
+
+#journal-form-container {
+  flex: 1;
+  max-width: 500px; /* Adjust the width of the form container */
+}
+
+#journal-form {
+  padding: 20px;
+  min-width: 500px;
+  background-color: #fffaec; /* Light background for the form */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+}
+
+#journal-title-input,
+#journal-textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #FFD6BA;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+#journal-textarea {
+  height: 150px; /* Set a fixed height for the textarea */
+}
+
+#mood-selector {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 10px;
+}
+
+#save-entry-button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #4CAF50; /* A green background for the button */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#journal-entries-container {
+  flex: 2;
+  padding-left: 20px; /* Space between form and entries */
+}
+
+#journal-entries {
+  /* No specific style required here, but you can add if needed */
+}
+
+#journal-intro {
+  background-color: #e8f5e9; /* Light green background for the intro section */
+  padding: 20px;
+  margin-bottom: 30px; /* Adds some space before the form */
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 300px;
+ margin-right: 20px;
+}
+
+#journal-intro h2 {
+  margin-bottom: 10px; /* Space below the heading */
+}
+
+#journal-intro p {
+  line-height: 1.6; /* Makes the text more readable */
+}
+/* Add styles for the mood images if necessary */

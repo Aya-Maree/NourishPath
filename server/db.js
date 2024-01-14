@@ -37,11 +37,12 @@ const JournalEntrySchema = new mongoose.Schema({
       ref: 'User', 
       required: true 
     },
-    title: { type: String, required: true }, // Title of the journal entry
+    title: { type: String, required: true },
     entry: { type: String, required: true },
+    mood: { type: String, required: true }, // Added mood field
     createdAt: { type: Date, default: Date.now },
   });
-
+  
 const JournalEntry = mongoose.model('JournalEntry', JournalEntrySchema);
 const User = mongoose.model('User', UserSchema);
 const Recipe = mongoose.model('Recipe', RecipeSchema);
