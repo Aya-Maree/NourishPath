@@ -139,7 +139,7 @@ app.post('/api/journals', async (req, res) => {
     }
   });
 
-  app.post('/api/journals', async (req, res) => {
+  app.post('/api/journalss', async (req, res) => {
     try {
       const { email, title, entry } = req.body;
   
@@ -165,7 +165,62 @@ app.post('/api/journals', async (req, res) => {
       res.status(500).json({ error: 'Internal Server Error' });
     }
   });
+
+  // Get all journal entries for a user
+  app.get('/api/journals', async (req, res) => {
+    try {
+        const { email } = req.query;
+        const user = await db.User.findOne({ email });
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        const journalEntries = await db.JournalEntry.find({ user: user._id });
+        res.status(200).json(journalEntries);
+    } catch (error) {
+        console.error('Error getting journal entries:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+// Delete a journal entry
+app.delete('/api/delete/journals/:id', async (req, res) => {
+    try {
+      const journalId = req.params.id;
+      await db.JournalEntry.findByIdAndDelete(journalId);
+      res.status(200).json({ message: 'Journal entry deleted successfully' });
+    } catch (error) {
+      console.error('Error deleting journal entry:', error.message);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  });
   
+// Edit a journal entry
+app.put('/api/edit/journals/:id', async (req, res) => {
+    try {
+      const journalId = req.params.id;
+      const { title, entry } = req.body;
+  
+      // Find the journal entry by ID
+      const journal = await db.JournalEntry.findById(journalId);
+      if (!journal) {
+        return res.status(404).json({ error: 'Journal entry not found' });
+      }
+  
+      // Update the journal entry
+      journal.title = title;
+      journal.entry = entry;
+  
+      // Save the updated journal entry
+      await journal.save();
+  
+      res.status(200).json({ message: 'Journal entry updated successfully' });
+    } catch (error) {
+      console.error('Error updating journal entry:', error.message);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  });
+    
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
