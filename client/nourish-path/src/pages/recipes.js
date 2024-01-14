@@ -5,6 +5,8 @@ function Recipes() {
   const [searchInput, setSearchInput] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [expandedRecipe, setExpandedRecipe] = useState(null); 
+  const [suggestionsMessage, setSuggestionsMessage] = useState('');
+
 
   const handleSearchInputChange = (event) => {
     setSearchInput(event.target.value);
@@ -12,7 +14,7 @@ function Recipes() {
 
   const handleSearchSubmit = async () => {
     try {
-      const response = await fetch('/api/recipes/search', {
+      const response = await fetch('http://localhost:5001/api/recipes/search', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -23,11 +25,36 @@ function Recipes() {
       });
 
       const data = await response.json();
-      setSearchResults(data);
+
+      if (data.message && data.suggestions) {
+        // If there are suggestions, trigger another search with the suggested ingredient
+        const suggestionResponse = await fetch('http://localhost:5001/api/recipes/search', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            ingredients: data.suggestions,
+          }),
+        });
+
+        const suggestionData = await suggestionResponse.json();
+
+        // Update the search results with the suggested ingredients
+        setSearchResults(suggestionData);
+        // Set the suggestions message to display
+        setSuggestionsMessage(data.message);
+      } else {
+        // If no suggestions, update the search results normally
+        setSearchResults(data);
+        // Clear the suggestions message
+        setSuggestionsMessage('');
+      }
     } catch (error) {
       console.error('Error searching for recipes:', error.message);
     }
   };
+  
 
   const handleExpandToggle = async (recipeName) => {
     try {
@@ -52,6 +79,8 @@ function Recipes() {
         onChange={handleSearchInputChange}
       />
       <button onClick={handleSearchSubmit}>Search</button>
+
+      {suggestionsMessage && <p>{suggestionsMessage}</p>}
 
       {searchResults.length > 0 ? (
         <ul>

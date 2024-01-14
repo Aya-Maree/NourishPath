@@ -65,10 +65,17 @@ app.post('/api/recipes/search', async (req, res) => {
     try {
         const { ingredients } = req.body;
 
-        const recipes = await db.Recipe.find({ 'ingredients.ingredientName': { $all: ingredients } });
+        // Use a case-insensitive regex to match ingredient names
+        const regexIngredients = ingredients.map(ingredient => new RegExp(ingredient, 'i'));
+
+        const recipes = await db.Recipe.find({
+            'ingredients.ingredientName': { $all: regexIngredients }
+        });
 
         if (recipes.length === 0) {
-            const firstIngredientWithResults = await db.Recipe.findOne({'ingredients.ingredientName': ingredients[0]});
+            const firstIngredientWithResults = await db.Recipe.findOne({
+                'ingredients.ingredientName': regexIngredients[0]
+            });
 
             if (firstIngredientWithResults) {
                 res.status(404).json({
@@ -76,7 +83,7 @@ app.post('/api/recipes/search', async (req, res) => {
                     suggestions: [ingredients[0]],
                 });
             } else {
-                res.status(404).json({ message: 'No recipes found with the specified ingredients'});
+                res.status(404).json({ message: 'No recipes found with the specified ingredients' });
             }
         } else {
             res.json(recipes);
