@@ -139,11 +139,21 @@ function Journal() {
             onChange={(e) => setEntry(e.target.value)}
             placeholder="Write your feelings here..."
           />
-          <div id="mood-selector">
-            <img src="/angry.png" alt="Angry" style={imageStyle} onClick={() => setMood('angry')} />
-            <img src="/happy.png" alt="Happy" style={imageStyle} onClick={() => setMood('happy')} />
-            <img src="/sad.png" alt="Sad" style={imageStyle} onClick={() => setMood('sad')} />
-          </div>
+             <div id="mood-selector">
+      <div id="happy-mood-container">
+        <img src="/happy.png" alt="Happy" id="happy-mood" onClick={() => setMood('happy')} />
+        <p id="happy-label">Happy</p>
+      </div>
+      <div id="sad-mood-container">
+        <img src="/sad.png" alt="Sad" id="sad-mood" onClick={() => setMood('sad')} />
+        <p id="sad-label">Sad</p>
+      </div>
+      <div id="angry-mood-container">
+        <img src="/angry.png" alt="Angry" id="angry-mood" onClick={() => setMood('angry')} />
+        <p id="angry-label">Angry</p>
+      </div>
+      {/* ... additional moods if necessary ... */}
+    </div>
           <button id="save-entry-button" type="submit">Save Entry</button>
         </form>
       </div>
