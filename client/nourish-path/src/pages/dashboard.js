@@ -22,21 +22,21 @@ function DashBoard() {
 
   const cards = [
     {
-        title: "Chatbot",
+        title: "Support",
         description: "Interact with our AI chatbot for assistance.",
         route: "/chatbot",
         imageUrl: "../chatbot.jpg", // No need for the path if the image is in the public folder
         bgColor: '#6A994E' // Dark green background
       },
     {
-      title: "Journals",
+      title: "Reflection",
       description: "Keep track of your thoughts and progress.",
       route: "/journaling",
       imageUrl: "../journals.jpg", // Replace with actual image path
       bgColor: '#6A994E' // Dark green background
     },
     {
-      title: "Meal Prep",
+      title: "Inspiration",
       description: "Plan and prepare your meals for the week.",
       route: "/recipes",
       imageUrl: "../recipes.jpg", // Replace with actual image path

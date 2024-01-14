@@ -16,9 +16,9 @@ function App() {
         <nav>
         <img src="/logo.png" alt="Logo" id="navbar-logo" /> 
           <Link to="/">Home</Link> | 
-          <Link to="/chatbot">Chatbot</Link> | 
-          <Link to="/recipes">Recipes</Link> | 
-          <Link to="/journaling">Journaling</Link>
+          <Link to="/chatbot">Support</Link> | 
+          <Link to="/journaling">Reflection</Link> | 
+          <Link to="/recipes">Inspiration</Link> 
         </nav>
 
         {/* Routes */}
