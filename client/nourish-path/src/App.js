@@ -14,7 +14,7 @@ function App() {
       <div>
         {/* Navigation Links */}
         <nav>
-        <img src="/logo.jpeg" alt="Logo" id="navbar-logo" /> 
+        <img src="/logo.png" alt="Logo" id="navbar-logo" /> 
           <Link to="/">Home</Link> | 
           <Link to="/chatbot">Chatbot</Link> | 
           <Link to="/recipes">Recipes</Link> | 

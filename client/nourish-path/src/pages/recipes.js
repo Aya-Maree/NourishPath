@@ -2,17 +2,19 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 
 function Recipes() {
+  
   const [searchInput, setSearchInput] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [expandedRecipe, setExpandedRecipe] = useState(null); 
   const [suggestionsMessage, setSuggestionsMessage] = useState('');
 
-
+ 
   const handleSearchInputChange = (event) => {
     setSearchInput(event.target.value);
   };
 
   const handleSearchSubmit = async () => {
+    
     try {
       const response = await fetch('http://localhost:5001/api/recipes/search', {
         method: 'POST',
