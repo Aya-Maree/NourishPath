@@ -2,10 +2,26 @@ body, h1, h2, input, button, nav, div {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+@font-face {
+  font-family: 'Poppins-Thin';
+  src: url('../public/fonts/Poppins-Thin.ttf') format('truetype');
+  font-weight: 100; 
+  font-style: normal;
 }
 
+@font-face {
+  font-family: 'Poppins';
+  src: url('../public/fonts/Poppins-Light.ttf') format('truetype');
+  font-weight: 300; 
+  font-style: normal;
+}
+
+
 body {
-  font-family: 'Arial', sans-serif;
+  font-family: 'Poppins-Thin', sans-serif;
+  font-weight: 100;
   background-color: #F2E8CF; /* Light beige background */
 }
 
@@ -14,6 +30,7 @@ nav {
   background-color: #6A994E; /* Dark green background for the navbar */
   padding: 1rem;
   text-align: center;
+  font-family: 'Poppins-Thin', sans-serif;
 }
 
 nav a {
@@ -38,6 +55,7 @@ nav a:hover {
 
 /* Style for the toggle switch container */
 #toggleSwitchContainer {
+  font-family: 'Poppins', sans-serif;
   text-align: center;
   margin-bottom: 20px; /* Adjust as needed */
 }
@@ -51,7 +69,7 @@ nav a:hover {
 
 /* Style for the registration form container */
 #registrationForm {
-  background-color: #fffaec;
+  background-color:  #fffaec;
   /* THIS IS THE OLD ONE background-color: #A7C957; /* Light green background for the form */
   padding: 20px;
   border-radius: 8px;
@@ -63,6 +81,7 @@ nav a:hover {
 #registrationForm h2 {
   color: #484545; /* Dark green for the title */
   text-align: center;
+  font-family: 'Poppins', sans-serif;
   margin-bottom: 16px;
 }
 
@@ -71,6 +90,7 @@ nav a:hover {
   color: #484545; /* Dark green for labels */
   display: block;
   margin-bottom: 8px;
+  font-family: 'Poppins-Thin', sans-serif;
 }
 
 /* Style for input fields */
@@ -105,9 +125,11 @@ nav a:hover {
 
 /* Shared styles for labels and input fields */
 .form-label {
-  color: #484545; /* Dark green for labels */
+  color: #030202; /* Dark green for labels */
   display: block;
   margin-bottom: 8px;
+  font-family: 'Poppins', sans-serif;
+
 }
 
 .form-input {
@@ -130,9 +152,10 @@ nav a:hover {
 }
 
 #loginForm h2 {
-  color: #484545; 
+  color: #140909; 
   text-align: center;
   margin-bottom: 16px;
+  font-family: 'Poppins', sans-serif;
 }
 
 #loginForm button {

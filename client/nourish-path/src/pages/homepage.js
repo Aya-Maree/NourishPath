@@ -26,7 +26,7 @@ function HomePage() {
 
     return (
         <div className="container">
-            <h1>Home Page</h1>
+            <h1>NourishPath</h1>
             <div id="toggleSwitchContainer">
                 <label id="toggleSwitchLabel">
                     {isLoginForm ? 'Login' : 'Register'}

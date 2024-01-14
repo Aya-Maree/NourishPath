@@ -3,23 +3,33 @@
 /*body {
   background-color: #F2E8CF; /* Light beige background */
   body {
-    font-family: 'Times New Roman', Times, serif;
-    background-image: url('HI.jpg'); /* Path to your image file */
+    font-family: 'Poppins', sans-serif;
+    /* Path to your image file */
+    
     background-size: cover; /* Cover the entire viewport without repeating */
     background-repeat: no-repeat; /* Do not repeat the image */
     background-attachment: fixed; /* Keep the background fixed during scroll */
     background-position: center center; /* Center the background image */
+    background-image: linear-gradient(to top, #b9686991 -10%,  #F2E8CF 30%,  #6A994E 100%);
   }
 
-nav {
-  background-color: #6A994E; /* Dark green background for the navbar */
-  padding: 10px;
-}
-
+  nav {
+    background-color: #386641;
+    margin-top: 20px;
+    margin-right: 10px;
+    margin-left: 10px;
+    padding: 20px;
+    border-radius: 20px; /* Adjust the value based on the desired roundness */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adjust the shadow as needed */
+  }
+  
 nav a {
-  color: #A7C957; /* Light green color for the text */
+  color: #f0f3e9; /* Light green color for the text */
   text-decoration: none; /* Removes the underline */
   margin-right: 10px;
+   /* Use Arial or a generic sans-serif font */
+  font-weight: bold; /* Make the font bold */
+
 }
 
 nav a:hover {
