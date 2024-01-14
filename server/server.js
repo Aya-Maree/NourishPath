@@ -112,6 +112,11 @@ app.get('/api/recipes/:recipeName', async (req, res) => {
     }
 });
 
+app.get('/recipes/:filename', (req, res) => {
+    const { filename } = req.params;
+    res.sendFile(path.join(__dirname, 'public', 'recipes', filename));
+  });
+
 app.post('/api/journals', async (req, res) => {
     try {
       const { email, entry } = req.body;

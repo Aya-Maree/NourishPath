@@ -70,25 +70,30 @@ function Recipes() {
 
 
   return (
-    <div>
-      <h1>Recipe</h1>
-      <input
-        type="text"
-        placeholder="Enter ingredients separated by commas"
-        value={searchInput}
-        onChange={handleSearchInputChange}
-      />
-      <button onClick={handleSearchSubmit}>Search</button>
-
-      {suggestionsMessage && <p>{suggestionsMessage}</p>}
+    <div id="recipeHubContainer">
+      <h1>Recipe Hub</h1>
+      <div id="recipeSearchBar">
+        <input
+          type="text"
+          placeholder="Enter ingredients separated by commas"
+          value={searchInput}
+          onChange={handleSearchInputChange}
+          id="recipeSearchInput"
+        />
+        <button onClick={handleSearchSubmit} id="recipeSearchButton">
+          Search
+        </button>
+      </div>
+      {suggestionsMessage && <p id="suggestionsMessage">{suggestionsMessage}</p>}
 
       {searchResults.length > 0 ? (
-        <ul>
+        <div id="recipeResultsContainer">
           {searchResults.map((recipe) => (
-            <li key={recipe.name}>
-              <p>{recipe.name}</p>
-              <button onClick={() => handleExpandToggle(recipe.name)}>
-                {expandedRecipe === recipe.name ? 'Collapse' : 'Expand'}
+            <div key={recipe.name} className="recipe-entry">
+              <img src={`/recipes/${recipe.image}`} alt={`${recipe.name} Image`} className="recipe-image" />
+              <p className="recipe-name">{recipe.name}</p>
+              <button className="toggle-button" onClick={() => handleExpandToggle(recipe.name)}>
+                {expandedRecipe === recipe.name ? 'See less' : 'See more'}
               </button>
               {expandedRecipe === recipe.name && (
                 <div>
@@ -103,9 +108,9 @@ function Recipes() {
                   <p>Instructions: {recipe.instructions}</p>
                 </div>
               )}
-            </li>
+            </div>
           ))}
-        </ul>
+        </div>
       ) : (
         <p>No recipes found. Try different ingredients.</p>
       )}

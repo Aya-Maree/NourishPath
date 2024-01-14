@@ -26,6 +26,7 @@ const RecipeSchema = new mongoose.Schema(
             },
         ],
         instructions: { type: String, required: true},
+        image: { type: String, required: true},
     },
     { collection: 'recipes' }
 );
