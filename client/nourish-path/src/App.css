@@ -12,9 +12,17 @@
     background-position: center center; /* Center the background image */
     background-image: linear-gradient(to top, #b9686991 -10%,  #F2E8CF 30%,  #6A994E 100%);
   }
-
+  #navbar-logo {
+  height: 50px; /* Set the height to fit your navbar */
+  width: auto; /* Maintain the aspect ratio */
+  margin-right: 20px; /* Spacing between the logo and the links */
+  background-color: #366c3a; /* Same color as the navbar background */
+  border-radius: 10%; /* Optional: if you want the logo to be rounded */
+  /* Add additional styles as needed */
+}
+  
   nav {
-    background-color: #386641;
+    background-color: #366c3a;
     margin-top: 20px;
     margin-right: 10px;
     margin-left: 10px;

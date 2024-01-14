@@ -356,6 +356,7 @@ nav a:hover {
   line-height: 1.6; /* Makes the text more readable */
 }
 /* Add styles for the mood images if necessary */
+/* Add styles for the mood images if necessary */
 #happy-mood, #sad-mood, #angry-mood {
   width: 50px;
   height: 50px;
@@ -385,3 +386,4 @@ nav a:hover {
 }
 
 /* Continue styling other elements and IDs as needed */
+
