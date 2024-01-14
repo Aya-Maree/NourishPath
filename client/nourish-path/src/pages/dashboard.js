@@ -73,7 +73,7 @@ function DashBoard() {
               sx={{ borderRadius: '16px 16px 0 0' }} // Round the top corners of the image
             />
           )}
-          <CardContent>
+          <CardContent sx={{ textAlign: 'center' }}>
             <Typography variant="h5" component="div" gutterBottom>
               {card.title}
             </Typography>
