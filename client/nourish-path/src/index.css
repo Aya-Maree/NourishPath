@@ -46,12 +46,12 @@ nav a:hover {
 #toggleSwitchLabel {
   margin-right: 10px;
   font-weight: bold;
-  color: #6A994E; /* Dark green for label */
+  color: #ffffff; /* Dark green for label */
 }
 
 /* Style for the registration form container */
 #registrationForm {
-  background-color: #a7c9576e; /* Light green background for the form */
+  background-color: #fffaec;
   /* THIS IS THE OLD ONE background-color: #A7C957; /* Light green background for the form */
   padding: 20px;
   border-radius: 8px;
@@ -61,14 +61,14 @@ nav a:hover {
 }
 
 #registrationForm h2 {
-  color: #6A994E; /* Dark green for the title */
+  color: #484545; /* Dark green for the title */
   text-align: center;
   margin-bottom: 16px;
 }
 
 /* Style for form labels */
 #registrationForm label {
-  color: #6A994E; /* Dark green for labels */
+  color: #484545; /* Dark green for labels */
   display: block;
   margin-bottom: 8px;
 }
@@ -81,7 +81,7 @@ nav a:hover {
   padding: 10px;
   margin-bottom: 16px;
   border-radius: 4px;
-  border: 1px solid #6A994E;
+  border: 1px solid #484545;
   box-sizing: border-box;
 }
 
@@ -98,14 +98,14 @@ nav a:hover {
 }
 
 #registrationForm button:hover {
-  background-color: #6A994E; /* Dark green background on hover */
+  background-color: #c17172; /* Dark green background on hover */
 }
 
 
 
 /* Shared styles for labels and input fields */
 .form-label {
-  color: #6A994E; /* Dark green for labels */
+  color: #484545; /* Dark green for labels */
   display: block;
   margin-bottom: 8px;
 }
@@ -115,13 +115,13 @@ nav a:hover {
   padding: 10px;
   margin-bottom: 16px;
   border-radius: 4px;
-  border: 1px solid #6A994E;
+  border: 1px solid #484545;
   box-sizing: border-box;
 }
 
 /* Styles specific to LoginForm */
 #loginForm {
-  background-color: #a7c9576e; /* Light green background for the form */
+  background-color: #fffaec;
   padding: 20px;
   border-radius: 8px;
   min-width: 350px;
@@ -130,7 +130,7 @@ nav a:hover {
 }
 
 #loginForm h2 {
-  color: #6A994E; /* Dark green for the title */
+  color: #484545; 
   text-align: center;
   margin-bottom: 16px;
 }

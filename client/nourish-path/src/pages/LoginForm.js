@@ -1,14 +1,40 @@
 import React, { useState } from 'react';
 
-
 function LoginForm() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        // Add logic to handle login here
-        console.log(email, password);
+
+        try {
+            const response = await fetch('http://localhost:5001/api/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, password }),
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.error || 'An error occurred');
+            }
+
+            // Save the user's name and email in local storage
+            localStorage.setItem('userName', data.name);
+            localStorage.setItem('userEmail', email);
+            console.log('Name '+data.name)
+            console.log('Email '+email)
+            console.log('Logged in successfully');
+            window.location.href = '/dashboard';
+        
+
+        } catch (error) {
+            console.error('Login error:', error.message);
+            alert('Failed to log in. Please check your credentials and try again.');
+        }
     }
 
     return (

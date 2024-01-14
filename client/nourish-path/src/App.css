@@ -1,6 +1,15 @@
-body {
+
+
+/*body {
   background-color: #F2E8CF; /* Light beige background */
-}
+  body {
+    font-family: 'Times New Roman', Times, serif;
+    background-image: url('HI.jpg'); /* Path to your image file */
+    background-size: cover; /* Cover the entire viewport without repeating */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-attachment: fixed; /* Keep the background fixed during scroll */
+    background-position: center center; /* Center the background image */
+  }
 
 nav {
   background-color: #6A994E; /* Dark green background for the navbar */

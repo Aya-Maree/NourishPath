@@ -25,6 +25,41 @@ app.post('/api/register', async (req, res) => {
     }
 });
 
+app.post('/api/login', async (req, res) => {
+    try {
+        const { email, password } = req.body;
+
+        // Replace with your actual database query to find the user by email
+        const user = await db.User.findOne({ email }).exec();
+
+        if (!user) {
+            // If the user is not found, send a 401 Unauthorized response
+            return res.status(401).json({ error: 'User not found' });
+        }
+
+        // Verify the password against the stored hash
+        const isMatch = await bcrypt.compare(password, user.password);
+
+        if (!isMatch) {
+            // If the password doesn't match, send a 401 Unauthorized response
+            return res.status(401).json({ error: 'Invalid credentials' });
+        }
+
+        // If login is successful, return the user's name and email
+        res.json({
+            message: 'Logged in successfully',
+            name: user.name, // Assuming the user object has a 'name' field
+            email: user.email // The email is already known but included for completeness
+        });
+
+    } catch (error) {
+        console.error('Login error:', error.message);
+        // For any server error, send a 500 Internal Server Error response
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+
 // Search for recipes by ingredients
 app.post('/api/recipes/search', async (req, res) => {
     try {
