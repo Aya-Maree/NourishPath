@@ -1,0 +1,155 @@
+
+  
+ .message-container {
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 11px 9px rgba(6, 1, 1, 0.1);
+  border-radius: 10px;
+  border: 1px solid black;
+  padding: 40px;
+  position: relative; /* Add relative positioning */
+  overflow: hidden; /* Hide overflow to prevent double scrollbars */
+}
+
+.chat-title {
+  font-size: 18px;
+  font-weight: 100px;
+  margin-bottom: 10px;
+  background-color: #F2E8CF;
+  border: 1px solid #000;
+ 
+  padding: 10px; /* Add some padding to the title */
+  position: sticky;
+  top: 0;
+  z-index: 1; /* Set a higher z-index to ensure it stays above the content */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+
+
+/* Customize scrollbar */
+#chtBx::-webkit-scrollbar {
+  width: 6px; /* Set the width of the scrollbar */
+  height: 10px;
+}
+
+#chtBx::-webkit-scrollbar-thumb {
+  background-color: #000; /* Set the color of the thumb */
+  border-radius: 4px; /* Set the border-radius of the thumb */
+}
+
+#chtBx::-webkit-scrollbar-track {
+  background-color: #f0f0f0;
+  border-radius: 4px;
+ 
+}
+  
+  .message {
+    padding: 8px;
+    margin-bottom: 8px;
+    max-width: 60%;
+    font-size: 12px;
+    word-wrap: break-word;
+  }
+  
+  .user {
+    background-image: linear-gradient(60deg, #abecd6 0%, #fbed96 100%);
+    color: rgb(11, 4, 4);
+    align-self: flex-end;
+    border-radius: 20px
+  }
+  
+  .assistant {
+    background-image: linear-gradient(to right, #f78ca0 0%, #f9748f 19%, #fd868c 60%, #fe9a8b 100%);;
+    color: white;
+    align-self: flex-start;
+    border-radius: 20px
+  }
+
+  #msg{
+    
+    background-image: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
+    border-radius: 20px
+
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px; 
+  }
+  
+  #srchbr {
+    width: 200%; 
+    margin-bottom: 10px; 
+    height: 50%;
+    font-size: 12px;
+  }
+  
+  #chatBtn {
+    width: 50%; 
+    size: 20px;
+    background-color: #386641;
+    color: #F2E8CF;
+    border: 0px;
+    font-size: 12px;
+  }
+
+  #chtBx {
+    width: 600px; /* Adjust the width as needed */
+    height: 550px; /* Adjust the height as needed */
+    background-image: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
+    border-radius: 15px; /* Adjust the border-radius as needed */
+    overflow-y: auto; /* Add scroll when content exceeds height */
+    padding: 20px;
+  }
+  .typing-indicator {
+    display: flex;
+    align-items: center;
+  }
+  
+  .typing-dots {
+    display: flex;
+  }
+  
+  .typing-dots span {
+    width: 8px;
+    height: 8px;
+    background-color: #666;
+    border-radius: 50%;
+    margin-right: 4px;
+    animation: typing-dot-animation 1.5s infinite;
+  }
+  
+  @keyframes typing-dot-animation {
+    0%, 20%, 100% {
+      opacity: 0;
+      transform: scale(1);
+    }
+    40% {
+      opacity: 1;
+      transform: scale(1.5);
+    }
+  }
+  .loading-dots {
+  display: flex;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  background-color: #020c16; /* Adjust the color as needed */
+  border-radius: 50%;
+  margin-right: 4px;
+  animation: bounce 0.6s infinite alternate;
+}
+
+@keyframes bounce {
+  to {
+    transform: translateY(-5px);
+  }
+}
+  
+  
+  
