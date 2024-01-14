@@ -15,19 +15,22 @@ function DashBoard() {
         title: "Chatbot",
         description: "Interact with our AI chatbot for assistance.",
         route: "/chatbot",
-        imageUrl: "../chatbot.jpg" // No need for the path if the image is in the public folder
+        imageUrl: "../chatbot.jpg", // No need for the path if the image is in the public folder
+        bgColor: '#6A994E' // Dark green background
       },
     {
       title: "Journals",
       description: "Keep track of your thoughts and progress.",
       route: "/journaling",
-      imageUrl: "../journals.jpg" // Replace with actual image path
+      imageUrl: "../journals.jpg", // Replace with actual image path
+      bgColor: '#6A994E' // Dark green background
     },
     {
       title: "Meal Prep",
       description: "Plan and prepare your meals for the week.",
       route: "/recipes",
-      imageUrl: "../recipes.jpg" // Replace with actual image path
+      imageUrl: "../recipes.jpg", // Replace with actual image path
+      bgColor: '#6A994E' // Dark green background
     }
   ];
 
@@ -39,29 +42,35 @@ function DashBoard() {
         alignItems: 'center',
         height: '100vh',
         gap: '20px',
+        padding: '20px', // Prevents cards from touching the edges
       }}
     >
       {cards.map((card, index) => (
         <Card
-          key={index}
-          sx={{
-            minWidth: 275,
-            transition: 'transform 0.3s',
-            transform: hoveredCard === index ? 'scale(1.1)' : 'scale(1)',
-            ':hover': {
-              cursor: 'pointer',
-            }
-          }}
-          onClick={() => navigate(card.route)}
-          onMouseEnter={() => setHoveredCard(index)}
-          onMouseLeave={() => setHoveredCard(null)}
-        >
+        key={index}
+        sx={{
+          minWidth: 275,
+          borderRadius: '16px', // Gives the cards rounded corners
+          boxShadow: 3, // Adds a shadow to the cards
+          backgroundColor: card.bgColor, // Sets the background color for each card
+          color: '#F2E8CF', // Sets the text color
+          '&:hover': {
+            transform: 'scale(1.05)', // Slightly enlarges cards on hover
+            boxShadow: 6, // Makes the shadow more pronounced on hover
+            },
+            transition: 'transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out', // Smooths the hover effects
+            }}
+            onClick={() => navigate(card.route)}
+            onMouseEnter={() => setHoveredCard(index)}
+            onMouseLeave={() => setHoveredCard(null)}
+            >
           {hoveredCard === index && (
             <CardMedia
               component="img"
               height="250"
               image={card.imageUrl}
               alt={card.title}
+              sx={{ borderRadius: '16px 16px 0 0' }} // Round the top corners of the image
             />
           )}
           <CardContent>
