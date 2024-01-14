@@ -18,7 +18,7 @@ const UserSchema = new mongoose.Schema({
 const User = mongoose.model('User', UserSchema);
 
 const RecipeSchema = new mongoose.Schema({
-    name: { type: String, required: true},
+    name: { type: String, required: true, unique: true},
     ingredients: [
         {
             ingredientName: { type: String, required: true},
