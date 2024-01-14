@@ -27,6 +27,9 @@ function LoginForm() {
             // Save the user's name and email in local storage
             localStorage.setItem('userName', data.name);
             localStorage.setItem('userEmail', email);
+            console.log('userName:', localStorage.getItem('userName'));
+            console.log('userEmail:', localStorage.getItem('userEmail'));
+
 
             console.log('Logged in successfully');
 

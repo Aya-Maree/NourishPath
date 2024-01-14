@@ -1,7 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 function Journal() {
+    useEffect(() => {
+        // Read the values as soon as the component mounts
+        const userName = localStorage.getItem('userName');
+        const userEmail = localStorage.getItem('userEmail');
+        console.log('Journal component mount:', { userName, userEmail });
+    
+      }, []);
   const [entry, setEntry] = useState('');
   const userEmail = localStorage.getItem('email'); // Retrieve email from local storage
 

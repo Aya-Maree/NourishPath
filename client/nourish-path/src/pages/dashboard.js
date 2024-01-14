@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -6,7 +6,17 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { useNavigate } from 'react-router-dom';
 
+
 function DashBoard() {
+  useEffect(() => {
+    console.log('Local Storage on dashboard mount:', {
+      userName: localStorage.getItem('userName'),
+      userEmail: localStorage.getItem('userEmail'),
+    });
+  
+    // ... other initialization code
+  
+  }, []);
   const navigate = useNavigate();
   const [hoveredCard, setHoveredCard] = useState(null); // State to track hovered card
 
