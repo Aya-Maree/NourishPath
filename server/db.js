@@ -15,7 +15,6 @@ const UserSchema = new mongoose.Schema({
     password: { type: String, required: true },
 });
 
-const User = mongoose.model('User', UserSchema);
 
 const RecipeSchema = new mongoose.Schema(
     {
@@ -31,6 +30,18 @@ const RecipeSchema = new mongoose.Schema(
     { collection: 'recipes' }
 );
 
+const JournalEntrySchema = new mongoose.Schema({
+    user: { 
+      type: mongoose.Schema.Types.ObjectId, 
+      ref: 'User', 
+      required: true 
+    },
+    entry: { type: String, required: true },
+    createdAt: { type: Date, default: Date.now },
+  });
+
+const JournalEntry = mongoose.model('JournalEntry', JournalEntrySchema);
+const User = mongoose.model('User', UserSchema);
 const Recipe = mongoose.model('Recipe', RecipeSchema);
 
-module.exports = { User, Recipe };
+module.exports = { User, Recipe, JournalEntry };

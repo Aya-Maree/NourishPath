@@ -105,6 +105,28 @@ app.get('/api/recipes/:recipeName', async (req, res) => {
     }
 });
 
+app.post('/api/journals', async (req, res) => {
+    try {
+      const { email, entry } = req.body;
+      const user = await db.User.findOne({ email }).exec(); // Find the user by email
+  
+      if (!user) {
+        return res.status(404).json({ error: 'User not found' });
+      }
+  
+      const newEntry = new db.JournalEntry({ 
+        user: user._id, // Reference the user's ID
+        entry 
+      });
+      await newEntry.save();
+  
+      res.status(201).json({ message: 'Journal entry saved successfully', entry: newEntry });
+    } catch (error) {
+      console.error('Error saving journal entry:', error.message);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  });
+
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
   });

@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function LoginForm() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate(); // Hook for navigation
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -25,12 +27,12 @@ function LoginForm() {
             // Save the user's name and email in local storage
             localStorage.setItem('userName', data.name);
             localStorage.setItem('userEmail', email);
-            console.log('Name '+data.name)
-            console.log('Email '+email)
-            console.log('Logged in successfully');
-            window.location.href = '/dashboard';
-        
 
+            console.log('Logged in successfully');
+
+            // Programmatic navigation to dashboard
+            navigate('/dashboard');
+        
         } catch (error) {
             console.error('Login error:', error.message);
             alert('Failed to log in. Please check your credentials and try again.');
